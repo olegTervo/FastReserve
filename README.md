@@ -1,6 +1,6 @@
 # FastReserve
 
-FastReserve on web sovellus, jossa käyttäjä voi lainata tai vuokrata jotain:
+FastReserve on web sovellus, jossa käyttäjä voi vuokrata jotain:
 - työkalut
 - autot
 - konsolipelit
