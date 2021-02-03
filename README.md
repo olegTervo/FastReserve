@@ -15,3 +15,5 @@ Ryhmä voi olla esim kauppa tai ihan joku ryhmä, jossa on joku osa ilmoituksist
 Myös sovelluksesta löytyy oma vuokraushistoriaa.
 
 Run server:<code>source venv/bin/activate</code>
+
+Heroku : [FastResrve](https://fast-reserve.herokuapp.com)
