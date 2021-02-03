@@ -13,3 +13,5 @@ Ilmoitukset ovat ryhmitelty tyypin mukaan (kodinkoneet, vaateet,...) ja sen Ryhm
 Ryhmä voi olla esim kauppa tai ihan joku ryhmä, jossa on joku osa ilmoituksista. Sen voi lisätä itselle, että jotkut tuotteet ovat helposti saatavia, ilman globaalihakua.
 
 Myös sovelluksesta löytyy oma vuokraushistoriaa.
+
+Run server:<code>source venv/bin/activate</code>
