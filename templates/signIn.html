@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/main.css') }}" >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Sign in</title>
+</head>
+<body>
+        <h1>Sign in</h1>
+
+        <form action="/signin" method="POST">
+                <p>Nimi:<br>
+                <input type="text" name="name"></p>
+                <p>Sukunimi:<br>
+                <input type="text" name="secondname"></p>
+		<p>E-mail:<br>
+		<input type="text" name="email"></p>
+                <p>Puhelin:<br>
+                <input type="tel" name="phone" placeholder="0453456789"></p>
+                <p>Salasana:<br>
+                <input type="password" name="password"></p>
+		{% if session.username %}
+                <p><input type="checkbox" name="isModerator">Haluatko etuoikeudet? </p>
+                {% endif %}
+                <input type="submit" value="Luo tunnus">
+        </form>
+</body>
+</html>
