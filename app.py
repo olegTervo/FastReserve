@@ -6,7 +6,7 @@ from os import getenv
 from os import urandom
 
 app = Flask(__name__)
-app.secret_key = urandom(16).hex() #getenv("SECRET_KEY")
+app.secret_key = getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
