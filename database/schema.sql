@@ -1,0 +1,21 @@
+
+CREATE TABLE IF NOT EXISTS Users (
+	id SERIAL PRIMARY KEY NOT NULL,
+	name VARCHAR(128) NOT NULL,
+	secondName VARCHAR(128) NOT NULL,
+	email VARCHAR(128) NOT NULL,
+	phoneNumber BIGINT,
+	password TEXT NOT NULL,
+	isModerator BIT
+);
+
+
+CREATE TABLE IF NOT EXISTS Item (
+	id SERIAL PRIMARY KEY NOT NULL,
+	name VARCHAR(128) NOT NULL,
+	type INT,
+	isPublic BIT,
+	info TEXT,
+	author SERIAL,
+	FOREIGN KEY (author) REFERENCES Users(id)
+);
