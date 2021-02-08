@@ -14,6 +14,8 @@ Ryhmä voi olla esim kauppa tai ihan joku ryhmä, jossa on joku osa ilmoituksist
 
 Myös sovelluksesta löytyy oma vuokraushistoriaa.
 
-Run server:<code>source venv/bin/activate</code>
+Run server: <code>source venv/bin/activate</code>
+
+Deploy db changes: <code>heroku psql < database/schema.sql</code> 
 
 Heroku : [FastResrve](https://fast-reserve.herokuapp.com)
