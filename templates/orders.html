@@ -1,8 +1,13 @@
-<title>Orders</title>
-<h1>Orders</h1>
+{% extends "layout.html" %}
+{% block title %}Tavarat{% endblock %}
+{% block content %}
+
+<h1>Tavarat</h1>
 <p>{{ message }}</p>
 <ul>
 {% for item in items %}
 <li> {{ item }}
 {% endfor %}
 </ul>
+
+{% endblock %}

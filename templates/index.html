@@ -1,29 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/main.css') }}" >
-<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+<h1>Etusivu</h1>
+<p>Tervetuloa sovellukseen!</p>
 
-<title>Etusivu</title>
-</head>
-<body>
-	<h1>Etusivu</h1>
-	<p>Tervetuloa sovellukseen!</p>
-	<a href="/signin">Luo tunnukset</a>
+{% if session.username %}
+    <p>Olet kirjautunut nimellä {{ session.username }}</p>
+{% else %}
+    <form action="/login" method="POST">
+        <p>E-mail:<br>
+        <input type="text" name="username"></p>
+        <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu">
+    </form>
+{% endif %}
 
-	{% if session.username %}
-	<p>Olet kirjautunut nimellä {{ session.username }}</p>
-	<a href="/logout">Kirjaudu ulos</a>
-	{% else %}
-	<form action="/login" method="POST">
-		<p>E-mail:<br>
-		<input type="text" name="username"></p>
-		<p>Salasana:<br>
-		<input type="password" name="password"></p>
-		<input type="submit" value="Kirjaudu">
-                
-
-	</form>
-	{% endif %}
-</body>
-</html>
+{% endblock %}
