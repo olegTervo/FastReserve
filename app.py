@@ -16,20 +16,44 @@ def index():
 
 @app.route("/orders")
 def ordersPage():
-	offers = ["vasara","polkkupyörä","CS peli",getenv("SECRET_KEY"),urandom(16).hex()]
-	return render_template("orders.html", message="Tässä on kaikki tarjoukset", items=offers)
+    sql = "SELECT name FROM Item WHERE author = :userid OR isPublic = '1'"
+    result = db.session.execute(sql, {"userid":session["userid"]})
+    offers = result.fetchall()
+    
+    return render_template("orders.html", items=offers)
 
 @app.route("/orders/<int:id>")
 def orderPage(id):
-	return "Order #" + str(id)
+    return "Order #" + str(id)
 
+@app.route("/orders/new", methods=["GET"])
+def newOrderForm():
+    return render_template("orderForm.html");
+
+@app.route("/orders/new", methods=["POST"])
+def newOrder():
+    name = request.form["name"]
+    type = request.form["type"]
+    info = request.form["info"]
+    author = session["userid"]
+    if(request.form.get("isPublic")):
+        isPublic = '1'
+    else:
+        isPublic = '0'
+
+    sql = "INSERT INTO Item (name,type,isPublic,info,author) VALUES (:name,:type,:isPublic,:info,:author)"
+    db.session.execute(sql, {"name":name,"type":type,"isPublic":isPublic,"info":info, "author":author})
+    db.session.commit()
+
+    return redirect("/orders")
+	
 @app.route("/login",methods=["POST"])
 def login():
     username = request.form["username"]
     password = request.form["password"]
 
     hash_value = generate_password_hash(password)
-    sql = "SELECT password, name, secondName FROM Users WHERE email=:username"
+    sql = "SELECT password, id, name, secondName FROM Users WHERE email=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()    
     if user == None:
@@ -37,7 +61,8 @@ def login():
     else:
         hash_value = user[0]
         if check_password_hash(hash_value,password):
-            session["username"] = user[1] + " " +  user[2]
+            session["userid"] = user[1]
+            session["username"] = user[2] + " " + user[3]
         else:
             redirect("/")
     
@@ -46,6 +71,7 @@ def login():
 @app.route("/logout")
 def logout():
     del session["username"]
+    del session["userid"]
     return redirect("/")
 
 @app.route("/signin", methods=["GET"])
