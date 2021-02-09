@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Sign in</h1>
 
-<form action="/signin" method="POST">
+<form action="/signin" method="POST" onsubmit="return check(this)">
     <p>Nimi:<br>
     <input type="text" name="name"></p>
     <p>Sukunimi:<br>
@@ -20,4 +20,33 @@
     <input type="submit" value="Luo tunnus">
 </form>
 
+<script>
+function check(form) {
+    if (form.name.value.length == 0 || 
+	form.name.value.length > 128) {
+        alert("Nimi puuttuu tai on liian pitkä");
+        return false;
+    }
+    if (form.secondname.value.length == 0 || 
+        form.secondname.value.length > 128) {
+        alert("Sukunimi puuttuu tai on liian pitkä");
+        return false;
+    }
+    if (form.email.value.length == 0 || 
+        form.email.value.length > 128) {
+        alert("E-mail puuttuu tai on liian pitkä");
+        return false;
+    }
+    if (form.phone.value.length == 0 || 
+        form.phone.value.length != 10) {
+        alert("Puhelin pituus on " + form.phone.value.length + ", täyty olla 10");
+        return false;
+    }
+    if (form.password.value.length < 2) {
+        alert("Salasana on liian lyhyt");
+        return false;
+    }
+    return true;
+}
+</script>
 {% endblock %}

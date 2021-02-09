@@ -29,7 +29,7 @@ def login():
     password = request.form["password"]
 
     hash_value = generate_password_hash(password)
-    sql = "SELECT password FROM Users WHERE email=:username"
+    sql = "SELECT password, name, secondName FROM Users WHERE email=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()    
     if user == None:
@@ -37,7 +37,7 @@ def login():
     else:
         hash_value = user[0]
         if check_password_hash(hash_value,password):
-            session["username"] = username
+            session["username"] = user[1] + " " +  user[2]
         else:
             redirect("/")
     
