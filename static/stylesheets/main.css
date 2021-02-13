@@ -127,3 +127,7 @@ img {
     margin-right: 20px;
   }
 }
+
+.formSelect {
+  width: 210px;
+}

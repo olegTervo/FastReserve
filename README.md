@@ -1,10 +1,13 @@
 # FastReserve
 
 FastReserve on web sovellus, jossa käyttäjä voi vuokrata jotain:
-- työkalut
+- välinet 
 - autot
 - konsolipelit
-- ihan kaikkiea.
+- saunat
+- mökit
+- palvelut
+...
 
 On kaksi käyttäjäärooleja, user ja moderator. Moderator voi luoda ilmoitukset, user ei.
 
