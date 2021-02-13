@@ -16,7 +16,7 @@ def index():
 
 @app.route("/orders")
 def ordersPage():
-    sql = "SELECT name FROM Item WHERE author = :userid OR isPublic = '1'"
+    sql = "SELECT id, name, info FROM Item WHERE author = :userid OR isPublic = '1'"
     result = db.session.execute(sql, {"userid":session["userid"]})
     offers = result.fetchall()
     
