@@ -28,7 +28,7 @@ def orderPage(id):
 
 @app.route("/orders/new", methods=["GET"])
 def newOrderForm():
-    sql = "SELECT * FROM ItemType;"
+    sql = "SELECT * FROM ItemType WHERE id > 0;"
     result = db.session.execute(sql)
     selectValues = result.fetchall()
     return render_template("orderForm.html", items=selectValues)
