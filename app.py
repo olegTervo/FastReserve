@@ -28,12 +28,15 @@ def orderPage(id):
 
 @app.route("/orders/new", methods=["GET"])
 def newOrderForm():
-    return render_template("orderForm.html");
+    sql = "SELECT * FROM ItemType;"
+    result = db.session.execute(sql)
+    selectValues = result.fetchall()
+    return render_template("orderForm.html", items=selectValues)
 
 @app.route("/orders/new", methods=["POST"])
 def newOrder():
     name = request.form["name"]
-    type = request.form["type"]
+    type = request.form["itemType"]
     info = request.form["info"]
     author = session["userid"]
     if(request.form.get("isPublic")):
