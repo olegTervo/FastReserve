@@ -57,4 +57,15 @@ CREATE TABLE IF NOT EXISTS ChannelUser (
 	isAdmin BIT,
 	isBanned BIT
 );
+
+ALTER TABLE ChannelUser
+ADD PRIMARY KEY (user_id, channel_id);
+
+ALTER TABLE ChannelUser
+ADD FOREIGN KEY (user_id)
+REFERENCES Users(id);
+
+ALTER TABLE ChannelUser
+ADD FOREIGN KEY (channel_id)
+REFERENCES Channel(id);
   
