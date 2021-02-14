@@ -7,3 +7,4 @@ app.secret_key = getenv("SECRET_KEY")
 from models import user
 from models import routes
 from models import orders
+from models import group

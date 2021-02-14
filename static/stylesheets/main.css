@@ -143,3 +143,13 @@ img {
   display: table-cell;
   padding-left: 10px;
 }
+.page {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+}
+@media (min-width:800px) {
+  .page {
+    grid-template-columns: repeat(3, auto);
+  }
+}

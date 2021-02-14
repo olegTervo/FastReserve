@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Ryhmät{% endblock %}
+{% block content %}
+
+<h1>Ryhmät
+  <div style="float:right;" class="topnav">
+    <a href="/groups/new">Uusi
+    </a>
+  <div>
+</h1>
+
+<div class="page">
+{% for group in groups %}
+
+  <div class="box">
+    <div class="title">
+      <a href="/group/{{group[0]}}">
+        {{ group[1] }}
+      </a>
+      <div class="rightButtons">
+        <div class="rightButton">
+        <a href="group/edit/{{group[0]}}">
+          <img src="{{ url_for('static', filename='images/edit.png') }}" width="20" height="20"/>
+        </a>
+        </div>
+        <div class="rightButton">
+        <a href="group/delete/{{group[0]}}">
+          <img src="{{ url_for('static', filename='images/delete.png') }}" width="20" height="20"/>
+        </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="image" style="text-align:center;">
+        <img src="https://www.fairworkcenter.org/wp-content/uploads/2019/02/error-404.png" />
+      </div>
+    </div>
+  </div>
+
+{% endfor %}
+</div>
+{% endblock %}
+~                                 

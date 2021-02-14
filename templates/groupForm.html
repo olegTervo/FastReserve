@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}Uusi ryhmä{% endblock %}
+{% block content %}
+
+{% if group %}
+
+<h1>Tarjous {{ item[0] }}</h1>
+
+<form action="/orders/edit/{{item[0]}}" method="POST" onsubmit="return check(this)">
+    <p>Nimi:<br>
+    <input type="text" name="name" value="{{item[1]}}"></p>
+    <p>Tyyppi:<br>
+      <select name="itemType" class="formSelect">
+{% for opt in options %}
+        <option value="{{opt[0]}}" {% if item[2] == opt[0]%}selected="true"{%endif%}>{{opt[1]}}</option>
+{% endfor %}
+      </select>
+    </p>
+    <p>Info:<br>
+    <input type="text" name="info" value="{{item[4]}}"></p>
+    <p><input type="checkbox" name="isPublic" {% if item[3] == '1' %}checked="true"{%endif%}>Public</p>
+
+    <input type="submit" value="Muokkaa">
+</form>
+
+{% else %}
+
+<h1>Uusi ryhmä</h1>
+
+<form action="/groups/new" method="POST" onsubmit="return check(this)">
+    <p>Nimi:<br>
+    <input type="text" name="name"></p>
+    <p><input type="checkbox" name="isPublic"> Public</p>
+
+    <input type="submit" value="Luo ryhmä">
+</form>
+
+{% endif %}
+
+<script>
+function check(form) {
+    if (form.name.value.length == 0 || 
+        form.name.value.length > 128) {
+        alert("Nimi puuttuu tai on liian pitkä");
+        return false;
+    }
+    return true;
+}
+</script>
+
+
+{% endblock %}
+
