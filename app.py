@@ -24,7 +24,14 @@ def ordersPage():
 
 @app.route("/orders/<int:id>")
 def orderPage(id):
-    return "Order #" + str(id)
+    sql = "SELECT id, name, info FROM Item WHERE id = :id"
+    result = db.session.execute(sql, {"id":id})
+    offer = result.fetchone()
+
+    if offer == None:
+        redirect("/orders")
+    else:
+        return render_template("order.html", item=offer)
 
 @app.route("/orders/new", methods=["GET"])
 def newOrderForm():
@@ -49,7 +56,44 @@ def newOrder():
     db.session.commit()
 
     return redirect("/orders")
-	
+
+@app.route("/orders/edit/<int:id>", methods=["GET"])
+def editOrder(id):
+    sql = "SELECT * FROM ItemType WHERE id > 0;"
+    result = db.session.execute(sql)
+    selectValues = result.fetchall()
+    
+    sql = "SELECT * FROM Item WHERE id = :id"
+    result = db.session.execute(sql, {"id":id})
+    offer = result.fetchone()
+
+    return render_template("orderForm.html", item=offer, options=selectValues)
+
+@app.route("/orders/edit/<int:id>", methods=["POST"])
+def saveEditedOrder(id):
+    name = request.form["name"]
+    type = request.form["itemType"]
+    info = request.form["info"]
+    if(request.form.get("isPublic")):
+        isPublic = '1'
+    else:
+        isPublic = '0'
+
+    sql = "UPDATE Item SET name=:name, type=:type, isPublic=:isPublic, info=:info WHERE id=:id"
+    db.session.execute(sql, {"name":name,"type":type,"isPublic":isPublic,"info":info, "id":id})
+    db.session.commit()
+
+    return redirect("/orders")
+
+
+@app.route("/orders/delete/<int:id>", methods=["GET"])
+def deleteOrder(id):
+    sql = "DELETE FROM Item WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+
+    return redirect("/orders")	
+
 @app.route("/login",methods=["POST"])
 def login():
     username = request.form["username"]

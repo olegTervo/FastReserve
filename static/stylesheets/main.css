@@ -25,6 +25,8 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-style: normal;
+  font-weight: normal;
 }
 
 /* Change the color of links on hover */
@@ -130,4 +132,14 @@ img {
 
 .formSelect {
   width: 210px;
+}
+
+.rightButtons {
+  display: table;
+  float: right;
+}
+
+.rightButton {
+  display: table-cell;
+  padding-left: 10px;
 }

@@ -2,13 +2,8 @@
 {% block title %}Tavarat{% endblock %}
 {% block content %}
 
-<h1>Tavarat
-  <div style="float:right;" class="topnav">
-    <a href="/orders/new">Uusi
-    </a>
-  <div>
-</h1>
-
+<h1>Tavarat</h1>
+<a href="/orders/new">Luo tarjous</a>
 <ul style="list-style-type: none; padding:0;">
 {% for item in items %}
 <li>
@@ -18,12 +13,12 @@
         {{ item[1] }}
       </a>
       <div class="rightButtons">
-	<div class="rightButton">
+	<div>
         <a href="orders/edit/{{item[0]}}">
   	  <img src="{{ url_for('static', filename='images/edit.png') }}" width="20" height="20"/>
         </a>
 	</div>
-	<div class="rightButton">
+	<div>
 	<a href="orders/delete/{{item[0]}}">
 	  <img src="{{ url_for('static', filename='images/delete.png') }}" width="20" height="20"/>
 	</a>
