@@ -2,22 +2,13 @@
 {% block title %}Uusi ryhmä{% endblock %}
 {% block content %}
 
-{% if group %}
+{% if item %}
 
-<h1>Tarjous {{ item[0] }}</h1>
+<h1>Ryhmä {{ item[0] }}</h1>
 
-<form action="/orders/edit/{{item[0]}}" method="POST" onsubmit="return check(this)">
+<form action="/groups/edit/{{item[0]}}" method="POST" onsubmit="return check(this)">
     <p>Nimi:<br>
     <input type="text" name="name" value="{{item[1]}}"></p>
-    <p>Tyyppi:<br>
-      <select name="itemType" class="formSelect">
-{% for opt in options %}
-        <option value="{{opt[0]}}" {% if item[2] == opt[0]%}selected="true"{%endif%}>{{opt[1]}}</option>
-{% endfor %}
-      </select>
-    </p>
-    <p>Info:<br>
-    <input type="text" name="info" value="{{item[4]}}"></p>
     <p><input type="checkbox" name="isPublic" {% if item[3] == '1' %}checked="true"{%endif%}>Public</p>
 
     <input type="submit" value="Muokkaa">

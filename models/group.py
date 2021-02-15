@@ -39,41 +39,34 @@ def newGroup():
     db.session.commit()
 
     return redirect("/groups")
-"""
-@app.route("/orders/edit/<int:id>", methods=["GET"])
-def editOrderForm(id):
-    sql = "SELECT * FROM ItemType WHERE id > 0;"
-    result = db.session.execute(sql)
-    selectValues = result.fetchall()
 
-    sql = "SELECT * FROM Item WHERE id = :id"
+@app.route("/groups/edit/<int:id>", methods=["GET"])
+def editGroupForm(id):
+    sql = "SELECT * FROM Channel WHERE id = :id"
     result = db.session.execute(sql, {"id":id})
-    offer = result.fetchone()
+    group = result.fetchone()
 
-    return render_template("orderForm.html", item=offer, options=selectValues)
+    return render_template("groupForm.html", item=group)
 
-@app.route("/orders/edit/<int:id>", methods=["POST"])
-def editOrder(id):
+@app.route("/groups/edit/<int:id>", methods=["POST"])
+def editGroup(id):
     name = request.form["name"]
-    type = request.form["itemType"]
-    info = request.form["info"]
     if(request.form.get("isPublic")):
         isPublic = '1'
     else:
         isPublic = '0'
 
-    sql = "UPDATE Item SET name=:name, type=:type, isPublic=:isPublic, info=:info WHERE id=:id"
-    db.session.execute(sql, {"name":name,"type":type,"isPublic":isPublic,"info":info, "id":id})
+    sql = "UPDATE Channel SET name=:name, isPublic=:isPublic WHERE id=:id"
+    db.session.execute(sql, {"name":name,"isPublic":isPublic, "id":id})
     db.session.commit()
 
-    return redirect("/orders")
+    return redirect("/groups")
 
-
-@app.route("/orders/delete/<int:id>", methods=["GET"])
-def deleteOrder(id):
-    sql = "DELETE FROM Item WHERE id=:id"
+@app.route("/groups/delete/<int:id>", methods=["GET"])
+def deleteGroup(id):
+    sql = "DELETE FROM Channel WHERE id=:id"
     db.session.execute(sql, {"id":id})
     db.session.commit()
 
-    return redirect("/orders")
-"""
+    return redirect("/groups")
+
