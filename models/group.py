@@ -14,12 +14,16 @@ def groupsPage():
 def groupPage(id):
     sql = "SELECT id, name FROM Channel WHERE id = :id"
     result = db.session.execute(sql, {"id":id})
-    offer = result.fetchone()
+    group = result.fetchone()
 
-    if offer == None:
+    sql = "SELECT * FROM GetGroupItems(:groupid)"
+    result = db.session.execute(sql, {"groupid":id})
+    items = result.fetchall()
+
+    if group == None:
         redirect("/groups")
     else:
-        return render_template("group.html", item=offer)
+        return render_template("group.html", group=group, items=items)
 
 @app.route("/groups/new", methods=["GET"])
 def newGroupForm():

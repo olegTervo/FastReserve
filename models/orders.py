@@ -1,5 +1,5 @@
 from app import app
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request, session, url_for
 from database.dblogic import db
 
 @app.route("/orders")
@@ -44,6 +44,37 @@ def newOrder():
     db.session.commit()
 
     return redirect("/orders")
+
+@app.route("/orders/new/<int:id>", methods=["GET"])
+def newOrderInGroupForm(id):
+    sql = "SELECT * FROM ItemType WHERE id > 0;"
+    result = db.session.execute(sql)
+    selectValues = result.fetchall()
+    return render_template("orderForm.html", items=selectValues, groupId=id)
+
+@app.route("/orders/new/<int:id>", methods=["POST"])
+def newOrderInGroup(id):
+    name = request.form["name"]
+    type = request.form["itemType"]
+    info = request.form["info"]
+    author = session["userid"]
+    if(request.form.get("isPublic")):
+        isPublic = '1'
+    else:
+        isPublic = '0'
+
+    sql = "INSERT INTO Item (name,type,isPublic,info,author) VALUES (:name,:type,:isPublic,:info,:author)"
+    db.session.execute(sql, {"name":name,"type":type,"isPublic":isPublic,"info":info, "author":author})
+    db.session.commit()
+
+    sql = "SELECT id FROM Item WHERE name=:name AND info=:info AND author=:author"
+    result = db.session.execute(sql, {"name":name,"info":info,"author":author})
+
+    sql = "INSERT INTO ChannelItem (item_id,channel_id) VALUES (:itemId, :channelId)"
+    db.session.execute(sql, {"itemId":result.fetchone()[0], "channelId":id})
+    db.session.commit()
+
+    return redirect(url_for('groupPage', id=id))
 
 @app.route("/orders/edit/<int:id>", methods=["GET"])
 def editOrderForm(id):

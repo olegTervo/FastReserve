@@ -1,13 +1,16 @@
 {% extends "layout.html" %}
 {% block title %}Ryhmä{% endblock %}
 {% block content %}
-<h1>{{item[1]}}</h1>
+<h1>{{group[1]}}</h1>
 
 <div class="item">
   <div class="image">
     <img src="https://www.fairworkcenter.org/wp-content/uploads/2019/02/error-404.png" />
   </div>
-
+  
+  <div class="list-page">
+    {%include "./ordersList.html"%}
+  </div>
 
 </div>
 

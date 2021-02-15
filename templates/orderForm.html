@@ -27,7 +27,9 @@
 
 <h1>Uusi tarjous</h1>
 
-<form action="/orders/new" method="POST" onsubmit="return check(this)">
+{%if groupId %}<form action="/orders/new/{{groupId}}" method="POST" onsubmit="return check(this)">
+{%else%}<form action="/orders/new" method="POST" onsubmit="return check(this)">
+{%endif%}
     <p>Nimi:<br>
     <input type="text" name="name"></p>
     <p>Tyyppi:<br>
