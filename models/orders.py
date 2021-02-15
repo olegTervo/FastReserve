@@ -1,5 +1,5 @@
 from app import app
-from flask import redirect, render_template, request, session, url_for
+from flask import redirect, render_template, request, session, url_for, Response
 from database.dblogic import db
 
 @app.route("/orders")
@@ -107,9 +107,8 @@ def editOrder(id):
 
 @app.route("/orders/delete/<int:id>", methods=["GET"])
 def deleteOrder(id):
-    sql = "DELETE FROM Item WHERE id=:id"
+    sql = "DELETE FROM ChannelItem WHERE item_id =:id; DELETE FROM Item WHERE id=:id"
     db.session.execute(sql, {"id":id})
     db.session.commit()
 
-    return redirect("/orders")
-
+    return "";
