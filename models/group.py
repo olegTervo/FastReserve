@@ -20,10 +20,14 @@ def groupPage(id):
     result = db.session.execute(sql, {"groupid":id})
     items = result.fetchall()
 
+    sql = "SELECT * FROM GetGroupUsers(:groupid)"
+    result = db.session.execute(sql, {"groupid":id})
+    users = result.fetchall()
+
     if group == None:
         redirect("/groups")
     else:
-        return render_template("group.html", group=group, items=items)
+        return render_template("group.html", group=group, items=items, users=users)
 
 @app.route("/groups/new", methods=["GET"])
 def newGroupForm():
@@ -74,3 +78,29 @@ def deleteGroup(id):
 
     return redirect("/groups")
 
+@app.route("/groups/<int:channelId>/deleteUserFromGroup/<int:userId>")
+def deleteUserFromGroup(channelId, userId):
+    sql = "DELETE FROM ChannelUser WHERE user_id=:userId AND channel_id=:channelId"
+    db.session.execute(sql, {"userId":userId, "channelId":channelId})
+    db.session.commit()
+
+    return redirect("/groups/"+str(channelId))
+
+@app.route("/groups/<int:id>/addUserToGroup", methods=["POST"])
+def addUserToGroup(id):
+    userId = request.form["addUser"]
+
+    sql = "SELECT name FROM Users WHERE id = :id"
+    result = db.session.execute(sql, {"id":userId})
+    userName = result.fetchone()
+
+    sql = "SELECT * FROM ChannelUser WHERE user_id = :id AND channel_id = :channelId"
+    result = db.session.execute(sql, {"id":userId, "channelId":id})
+    ChannelUserRaw = result.fetchone()
+    
+    if userName != None and ChannelUserRaw == None:
+        sql = "INSERT INTO ChannelUser (user_id, channel_id) VALUES (:userId, :channelId)"
+        db.session.execute(sql, {"userId":userId, "channelId":id})
+        db.session.commit()
+
+    return redirect("/groups/"+str(id)) 
