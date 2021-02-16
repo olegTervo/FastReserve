@@ -77,8 +77,9 @@ body {
 
 .image {
   margin-right: 20px;
-  max-width:250px;
-  max-height:250px;
+  max-width:180px;
+  max-height:180px;
+  grid-area: image;
 }
 
 img {
@@ -155,8 +156,19 @@ img {
 }
 
 .list-page {
-  display: grid;
-  grid-template-columns: auto;
-  grid-gap: 10px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.group-page {
+  display: grid;
+  grid-template-columns: 200px auto
+}
+
+.user-list {
+  grid-area: users;
+  height: 100%;
+  padding-top: 40px;
 }
