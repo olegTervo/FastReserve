@@ -14,7 +14,7 @@
     <input type="tel" name="phone" placeholder="0453456789"></p>
     <p>Salasana:<br>
     <input type="password" name="password"></p>
-{% if session.username %}
+{% if session.isModerator == '1' %}
     <p><input type="checkbox" name="isModerator">Haluatko etuoikeudet? </p>
 {% endif %}
     <input type="submit" value="Luo tunnus">

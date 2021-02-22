@@ -6,6 +6,15 @@
       <a href="/orders/{{item[0]}}">
         {{ item[1] }}
       </a>
+{% if session.isModerator == '1' %}
+      <div class="rightButtons">
+        <div class="rightButton">
+	  <a onclick="$.getJSON('/orders/delete/{{item[0]}}').then(setTimeout(() => { window.location.reload(); }, 100));">
+            <img src="{{ url_for('static', filename='images/delete.png') }}" width="20" height="20"/>
+          </a>
+        </div>
+      </div>
+{% endif %}
     </div>
 
     <div class="item">
@@ -22,5 +31,6 @@
 
 {% endfor %}
 </ul>
-
+{% if session.isModerator == '1' %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endif %}

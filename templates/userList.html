@@ -1,14 +1,19 @@
 <ul style="list-style-type: none; padding:0;">
+
+{% if session.isModerator == '1' %}
 <li>
 <form action="/groups/{{group[0]}}/addUserToGroup" method="POST" onsubmit="return check(this)">
     <a style="width:70px">User id:</a>
     <input type="text" name="addUser" style="width:20px;" pattern="\d*"> 
     <input type="submit" value="+" style="float:right;colour:black;padding-right:36px;font-size:20px;width:20px;text-align:center;background-color:white;border: none;">  
 </form>
+{% endif %}
 {% for user in users %}
 <li style="padding-top:10px;">
   <a style="font-size:20px;">{{user[1]}}</a>
+{% if session.isModerator == '1' %}
   <a style="float:right;colour:black;padding-right:20px;font-size:20px;width:20px;text-align:center;" href="/groups/{{group[0]}}/deleteUserFromGroup/{{user[0]}}">–</a>
+{% endif %}
 {% endfor %}
 </ul>
 

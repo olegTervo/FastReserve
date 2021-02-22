@@ -3,11 +3,13 @@
 {% block content %}
 <h1>
 {{group[1]}}
+{% if session.isModerator == '1' %}
 <div style="float:right;" class="topnav">
     <a href="/orders/new/{{group[0]}}">Uusi tarjous</a>
-    <a href="groups/edit/{{group[0]}}">Muokkaa ryhmää</a>
-    <a href="groups/delete/{{group[0]}}">Poista ryhmän</a>
+    <a href="/groups/edit/{{group[0]}}">Muokkaa ryhmää</a>
+    <a href="/groups/delete/{{group[0]}}">Poista ryhmän</a>
 <div>
+{% endif %}
 </h1>
 
 <div class="group-page">

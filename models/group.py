@@ -68,11 +68,11 @@ def editGroup(id):
     db.session.execute(sql, {"name":name,"isPublic":isPublic, "id":id})
     db.session.commit()
 
-    return redirect("/groups")
+    return redirect("/groups/" + str(id))
 
 @app.route("/groups/delete/<int:id>", methods=["GET"])
 def deleteGroup(id):
-    sql = "DELETE FROM ChannelItem WHERE channel_id=:id;DELETE FROM Channel WHERE id=:id"
+    sql = "DELETE FROM ChannelItem WHERE channel_id=:id;DELETE FROM ChannelUser WHERE channel_id=:id;DELETE FROM Channel WHERE id=:id"
     db.session.execute(sql, {"id":id})
     db.session.commit()
 

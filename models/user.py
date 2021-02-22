@@ -9,7 +9,7 @@ def login():
     password = request.form["password"]
 
     hash_value = generate_password_hash(password)
-    sql = "SELECT password, id, name, secondName FROM Users WHERE email=:username"
+    sql = "SELECT password, id, name, secondName, isModerator FROM Users WHERE email=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if user == None:
@@ -19,6 +19,7 @@ def login():
         if check_password_hash(hash_value,password):
             session["userid"] = user[1]
             session["username"] = user[2] + " " + user[3]
+            session["isModerator"] = user[4]
         else:
             redirect("/")
 
@@ -28,6 +29,7 @@ def login():
 def logout():
     del session["username"]
     del session["userid"]
+    del session["isModerator"]
     return redirect("/")
 
 @app.route("/signin", methods=["GET"])

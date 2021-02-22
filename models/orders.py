@@ -102,7 +102,7 @@ def editOrder(id):
     db.session.execute(sql, {"name":name,"type":type,"isPublic":isPublic,"info":info, "id":id})
     db.session.commit()
 
-    return redirect("/orders")
+    return redirect("/orders/" + str(id))
 
 
 @app.route("/orders/delete/<int:id>", methods=["GET"])
@@ -111,4 +111,4 @@ def deleteOrder(id):
     db.session.execute(sql, {"id":id})
     db.session.commit()
 
-    return "";
+    return redirect("/orders")

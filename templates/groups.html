@@ -3,10 +3,12 @@
 {% block content %}
 
 <h1>Ryhmät
+{% if session.isModerator == '1' %}
   <div style="float:right;" class="topnav">
     <a href="/groups/new">Uusi
     </a>
   <div>
+{% endif %}
 </h1>
 
 <div class="page">

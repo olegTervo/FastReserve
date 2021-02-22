@@ -2,12 +2,14 @@
 {% block title %}Tavarat{% endblock %}
 {% block content %}
 
+{% if session.isModerator == '1' %}
 <h1>Tavarat
   <div style="float:right;" class="topnav">
     <a href="/orders/new">Uusi
     </a>
   <div>
 </h1>
+{% endif %}
 
 <ul style="list-style-type: none; padding:0;">
 {% for item in items %}
@@ -17,6 +19,15 @@
       <a href="/orders/{{item[0]}}">
         {{ item[1] }}
       </a>
+{% if session.isModerator == '1' %}
+      <div class="rightButtons">
+        <div class="rightButton">
+          <a onclick="$.getJSON('/orders/delete/{{item[0]}}').then(setTimeout(() => { window.location.reload(); }, 100));">
+            <img src="{{ url_for('static', filename='images/delete.png') }}" width="20" height="20"/>
+          </a>
+        </div>
+      </div>
+{% endif %}
     </div>
     
     <div class="item">
@@ -30,7 +41,6 @@
 
     </div>
   </div> 
-
 {% endfor %}
 </ul>
 
