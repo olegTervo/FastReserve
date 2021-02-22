@@ -29,10 +29,10 @@ Asennus
 ------
 <code> git clone https://github.com/olegTervo/tyovuorolista.git </code>
 
-Create virtual environment: <code> python3 -m venv venv </code>
+Create virtual environment: <br><code> python3 -m venv venv </code>
 
-Run server: <code>source venv/bin/activate</code>
+Run server: <br><code>source venv/bin/activate</code>
 
-Install requirements: <code>pip install -r requirements.txt</code>
+Install requirements: <br><code>pip install -r requirements.txt</code>
 
-Deploy db changes: <code>heroku psql < database/schema.sql</code> 
+Deploy db changes: <br><code>[heroku] psql < database/schema.sql</code> 
