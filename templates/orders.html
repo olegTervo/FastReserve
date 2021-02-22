@@ -17,18 +17,6 @@
       <a href="/orders/{{item[0]}}">
         {{ item[1] }}
       </a>
-      <div class="rightButtons">
-	<div class="rightButton">
-        <a href="orders/edit/{{item[0]}}">
-  	  <img src="{{ url_for('static', filename='images/edit.png') }}" width="20" height="20"/>
-        </a>
-	</div>
-	<div class="rightButton">
-	<a href="orders/delete/{{item[0]}}">
-	  <img src="{{ url_for('static', filename='images/delete.png') }}" width="20" height="20"/>
-	</a>
-	</div>
-      </div>
     </div>
     
     <div class="item">

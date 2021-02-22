@@ -12,34 +12,20 @@
 <div class="page">
 {% for group in groups %}
 
-  <div class="box">
-    <div class="title" style="text-align:center;">
+  <div class="box" style="width:300px;">
+    <div class="grid-title" style="text-align:center;">
       <a href="/groups/{{group[0]}}">
-{% if group[1]|length > 10%}
-        {{ group[1][:10-group[1]|length] + "..." }}
+{% if group[1]|length > 20 %}
+        {{ group[1][:20-group[1]|length] + "..." }}
 {% else %}
 	{{ group[1] }}
 {% endif %}
       </a>
-{% if group[2] == session.userid %}
-      <div class="rightButtons">
-        <div class="rightButton">
-        <a href="groups/edit/{{group[0]}}">
-          <img src="{{ url_for('static', filename='images/edit.png') }}" width="20px" height="20px"/>
-        </a>
-        </div>
-        <div class="rightButton">
-        <a href="groups/delete/{{group[0]}}">
-          <img src="{{ url_for('static', filename='images/delete.png') }}" width="20px" height="20px"/>
-        </a>
-        </div>
-      </div>
-{% endif %}
     </div>
 
-    <div class="item">
-      <div class="image" style="text-align:center;">
-        <img src="https://www.fairworkcenter.org/wp-content/uploads/2019/02/error-404.png" />
+    <div class="item" style="text-align:center;">
+      <div class="image" style="display:block;margin:auto;">
+        <img src="https://www.fairworkcenter.org/wp-content/uploads/2019/02/error-404.png" style="height:120px;">
       </div>
     </div>
   </div>

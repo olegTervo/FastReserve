@@ -1,7 +1,16 @@
 {% extends "layout.html" %}
 {% block title %}Tarjous{% endblock %}
 {% block content %}
-<h1>{{item[1]}}</h1>
+<h1>
+  {{item[1]}}
+  
+  <div style="float:right;" class="topnav">
+    <a href="/orders/edit/{{item[0]}}">Muokkaa
+    </a>
+    <a href="/orders/delete/{{item[0]}}">Poista
+    </a>
+  <div>
+</h1>
 
 <div class="item">
   <div class="image">
@@ -14,6 +23,34 @@
 
 </div>
 
+<div style="width:100%;">
+  <h3>Ota yhteyttä</h3>
+  <form id="emailForm" action="/orders/{{item[0]}}" method="GET" onsubmit="return check(this)">
+    <table style="width:60%;">
+    <tr>
+      <td> <label>Lähettäjä</label> </td>
+      <td> <input type="text" name="name" value="{{ session.username }}"> </td>
+    </tr>
+    <tr>
+      <td> <label>Nouto päivä &ensp;</label>
+      <input type="date" name="dateStart"> </td>
+      <td> <label>Palautus päivä &ensp;</label>
+      <input type="date" name="dateEnd"> </td>
+    </tr>
+    <tr>
+      <td>  <label>Nouto aika &emsp;</label>
+      <input type="time" name="timeStart"> </td>
+      <td> <label>Palautus aika &emsp;</label>
+      <input type="time" name="timeEnd"> </td>
+    </tr>
+    </table>
+    <label>Lisätiedot</label>
+    <textarea name="info" style="width:100%; height:200px; padding-top:20px;">
+    </textarea>
+    
+    <input type="submit" style="margin-top:20px;" value="Lähettää sähköpostia" >
+  </form>
+</div>
 
 {% endblock %}
 

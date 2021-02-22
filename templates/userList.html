@@ -2,7 +2,7 @@
 <li>
 <form action="/groups/{{group[0]}}/addUserToGroup" method="POST" onsubmit="return check(this)">
     <a style="width:70px">User id:</a>
-    <input type="text" name="addUser" style="width:20px;"> 
+    <input type="text" name="addUser" style="width:20px;" pattern="\d*"> 
     <input type="submit" value="+" style="float:right;colour:black;padding-right:36px;font-size:20px;width:20px;text-align:center;background-color:white;border: none;">  
 </form>
 {% for user in users %}
@@ -11,3 +11,14 @@
   <a style="float:right;colour:black;padding-right:20px;font-size:20px;width:20px;text-align:center;" href="/groups/{{group[0]}}/deleteUserFromGroup/{{user[0]}}">–</a>
 {% endfor %}
 </ul>
+
+<script>
+function check(form) {
+    if (form.addUser.value.length == 0) {
+        alert("Anna käyttäjän ID ensin");
+        return false;
+    }
+
+    return true;
+}
+</script>

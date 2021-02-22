@@ -1,14 +1,19 @@
 body {
-    margin: auto;
-    max-width: 60em;
+  margin: auto;
+  max-width: 60em;
 }
+
+#content {
+  margin-bottom: 40px; 
+}
+
 .footer {
-    position: fixed;
-    width: 100%;
-    max-width: 60em;
-    bottom: 0;
-    text-align: left;
-    background: #FFFFFF;
+  position: fixed;
+  width: 100%;
+  max-width: 60em;
+  bottom: 0;
+  text-align: left;
+  background: #FFFFFF;
 }
 
 /* Add a black background color to the top navigation */
@@ -62,6 +67,16 @@ body {
   color: #5E6977;
   font-size: 18px;
   font-weight: 400;
+  text-align: center;
+}
+
+.grid-title {
+  height: 22px;
+  border-bottom: 1px solid #E1E8EE;
+  padding: 20px 20px;
+  color: #5E6977;
+  font-size: 18px;
+  font-weight: 400;
 }
  
 .item {
@@ -76,10 +91,8 @@ body {
 }
 
 .image {
-  margin-right: 20px;
   max-width:180px;
   max-height:180px;
-  grid-area: image;
 }
 
 img {
@@ -115,9 +128,6 @@ img {
     height: auto;
     flex-wrap: wrap;
     justify-content: center;
-  }
-  .image img {
-    width: 50%;
   }
   .image,
   .quantity,
@@ -162,12 +172,22 @@ img {
 
 
 .group-page {
+  width:100%;
   display: grid;
-  grid-template-columns: 200px auto
+  grid-template-columns: auto
+}
+@media (min-width:800px) {
+  .group-page {
+    grid-template-columns: 200px auto
+  }
 }
 
 .user-list {
-  grid-area: users;
   height: 100%;
   padding-top: 40px;
+}
+
+#emailForm {
+  width: 100%;
+  padding-top: 20px;
 }

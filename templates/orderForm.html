@@ -4,7 +4,7 @@
 
 {% if item %}
 
-<h1>Tarjous {{ item[0] }}</h1>
+<h1>Tarjous №{{ item[0] }}</h1>
 
 <form action="/orders/edit/{{item[0]}}" method="POST" onsubmit="return check(this)">
     <p>Nimi:<br>
