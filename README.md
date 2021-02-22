@@ -17,10 +17,6 @@ Ryhmä voi olla esim kauppa tai ihan joku ryhmä, jossa on joku osa ilmoituksist
 
 Myös sovelluksesta löytyy oma vuokraushistoriaa.
 
-Run server: <code>source venv/bin/activate</code>
-
-Deploy db changes: <code>heroku psql < database/schema.sql</code> 
-
 
 Heroku
 ------
@@ -28,3 +24,15 @@ Heroku
 Moderator tunnarit: <br>
 - login: 1212 <br>  
 - password: 1212
+
+Asennus
+------
+<code> git clone https://github.com/olegTervo/tyovuorolista.git </code>
+
+Create virtual environment: <code> python3 -m venv venv </code>
+
+Run server: <code>source venv/bin/activate</code>
+
+Install requirements: <code>pip install -r requirements.txt</code>
+
+Deploy db changes: <code>heroku psql < database/schema.sql</code> 
