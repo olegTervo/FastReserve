@@ -32,7 +32,7 @@ Moderator tunnarit: <br>
  - Käyttäjä voi luoda, muokkaa ja poistaa ryhmät
    - CRUD (Moderator), R (User)
  - Myös jokainen ilmoitus tai ryhmä voi olla julkinen tai ei
-   - Julkiset näkee muut käyttäjät
+   - Julkisia näkee muut käyttäjät
    - Tilan voi vaihtaa myöhemmin (Moderator)
  - Ryhmään kuuluu Käyttäjät ja Ilmoitukset niin
    - Ryhmässä voi olla monta Käyttäjää
