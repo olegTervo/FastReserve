@@ -15,9 +15,6 @@ Ilmoitus on post tyyppinen, siinä on valokuva, nimi, teksti, info milloin se on
 Ilmoitukset ovat ryhmitelty tyypin mukaan (kodinkoneet, vaateet,...) ja sen Ryhmän mukaan.
 Ryhmä voi olla esim kauppa tai ihan joku ryhmä, jossa on joku osa ilmoituksista. Sen voi lisätä itselle, että jotkut tuotteet ovat helposti saatavia, ilman globaalihakua.
 
-Myös sovelluksesta löytyy oma vuokraushistoriaa.
-
-
 ## Heroku demo palvelin
 
 [FastResrve](https://fast-reserve.herokuapp.com) <br><br>
