@@ -26,4 +26,8 @@
     <hr>
     Voit lähettää palautetta <a href="#">tästä</a>
 </div>
+
+{% if session.isModerator == '1' %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{% endif %}
 </body>
