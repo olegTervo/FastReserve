@@ -21,8 +21,10 @@ Run server: <code>source venv/bin/activate</code>
 
 Deploy db changes: <code>heroku psql < database/schema.sql</code> 
 
-Moderator tunnarit:
 
-login: 1212 <br> password: 1212
-
-Heroku : [FastResrve](https://fast-reserve.herokuapp.com)
+Heroku
+------
+[FastResrve](https://fast-reserve.herokuapp.com) <br><br>
+Moderator tunnarit: <br>
+- login: 1212 <br>  
+- password: 1212
