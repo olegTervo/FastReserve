@@ -22,7 +22,7 @@ Moderator tunnarit: <br>
 - login: 1212 <br>  
 - password: 1212
 
-## Tilaa
+## Tilanne
 
  - On olemassa 2 käyttäjärooleja: user, moderator
  - Kirautumisjärjestelmä perustietoturvallisudella: 
